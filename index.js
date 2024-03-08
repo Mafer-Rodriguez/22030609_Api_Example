@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
 const { getUsers, createUser } = require("./queries/user.queries");
-const { getBooks, createBook } = require("./queries/book.queries");
+const { getBooks, createBook , updateBook} = require("./queries/book.queries");
 
 app.use(bodyParser.json());
 
@@ -21,6 +21,10 @@ app.get("/book", (req, res) => {
 
 app.post("/book", (req, res) => {
   createBook(req, res);
+});
+
+app.put("/book/:id",( req , res )=>{
+  updateBook(req, res);
 });
 
 app.listen(port, () => {
