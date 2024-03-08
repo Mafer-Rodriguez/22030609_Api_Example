@@ -23,7 +23,7 @@ module.exports = (sequelize, Sequelize) => {//hacer un modulo que exporte una fu
                     key: 'id' 
                 }
             },
-            stok: {
+            stock: {
                 type: Sequelize.INTEGER,
             },
             created_at: {
