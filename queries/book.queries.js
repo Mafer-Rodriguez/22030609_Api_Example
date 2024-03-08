@@ -20,6 +20,25 @@ const createBook = async (req, res) => {
   }
 };
 
+
+const updateBook = async (req, res) => {
+    try {
+        const book = await Book.update(req.body, {
+        where: {
+            id: req.params.id,
+        },
+        });
+        res.json(book);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+
+
 module.exports = {
-  getBooks
+  getBooks,
+  createBook,
+  updateBook
+
 };
