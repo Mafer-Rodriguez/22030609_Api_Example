@@ -4,6 +4,7 @@ const port = 3000;
 const bodyParser = require("body-parser");
 const { getUsers, createUser } = require("./queries/user.queries");
 const { getBooks, createBook , updateBook,deleteBook,updateBookPatch} = require("./queries/book.queries");
+const {getAuthors,createAuthor,updateAuthor,deleteAuthor,updateAuthorPatch} = require("./queries/author.queries");
 
 app.use(bodyParser.json());
 
@@ -40,7 +41,27 @@ app.patch("/book/:id",(req,res)=>{
   updateBookPatch(req,res);
 });
 
+//author 
+app.get("/author",(req,res)=>{
+  getAuthors(req,res);
 
+});
+app.post("/author",(req,res)=>{
+  createAuthor(req,res);
+});
+
+app.put("/author/:id",(req,res)=>{
+  updateAuthor(req,res);
+});
+
+app.delete("/author/:id",(req,res)=>{
+  deleteAuthor(req,res);
+});
+
+app.patch("/author/:id",(req,res)=>{
+  updateAuthorPatch(req,res);
+
+});
 
 
 //para que el servidor escuche en el puerto 3000
