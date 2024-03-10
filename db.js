@@ -23,4 +23,10 @@ db.sequelize = sequelize//le asignamos a la propiedad sequelize del objeto db la
 db.user = require("./models/user.model.js")(sequelize,Sequelize)
 //le asignamos a la propiedad book del objeto db el modelo de libro que creamos en el archivo book.model.js
 db.book = require("./models/book.model.js")(sequelize,Sequelize)
+//le asignamos a la propiedad author del objeto db el modelo de autor que creamos en el archivo author.model.js
+db.author = require("./models/author.model.js")(sequelize,Sequelize)
+//le asignamos a la propiedad genre del objeto db el modelo de genero que creamos en el archivo genre.model.js
+db.genre = require("./models/genre.model.js")(sequelize,Sequelize)
+//le asignamos a la propiedad book_author del objeto db el modelo de libro_autor que creamos en el archivo book_author.model.js
+db.book_author = require("./models/book_author.model.js")(sequelize,Sequelize)
 module.exports = db//exportamos el objeto db para que pueda ser utilizado en otros archivos

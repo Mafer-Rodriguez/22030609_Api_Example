@@ -27,8 +27,8 @@ const updateBook = async (req, res) => {
     const updateBook = req.body; //datos actualizados del libro
 
     const book = await Book.findByPk(bookId); //busco el libro por id
-    if(!book){
-      res.status(404).json({message: "Book not found"});
+    if (!book) {
+      res.status(404).json({ message: "Book not found" });
 
     }
     book.title = updateBook.title;//actualizo el titulo
@@ -38,23 +38,23 @@ const updateBook = async (req, res) => {
     await book.save();//guardo los cambios
 
     res.json(book);//devuelvo el libro actualizado como repuesta 
-  }catch (error){
-    res.status(500).json({message: error.message});
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
-const deleteBook = async (req, res)=>{
-  try{
+const deleteBook = async (req, res) => {
+  try {
     const bookId = req.params.id;//obtengo el id del libro que quiero eliminar
 
     const book = await book.findByPk(bookId);//busco el libro por id
-    if(!book){
-      res.status(404).json({message: "Book not found"});
+    if (!book) {
+      res.status(404).json({ message: "Book not found" });
     }
     await book.destroy();//elimino el libro
-    res.json({message: "Book deleted"});//devuelvo un mensaje como respuesta
-  }catch (error){
-    res.status(500).json({message: error.message});
+    res.json({ message: "Book deleted" });//devuelvo un mensaje como respuesta
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -64,8 +64,8 @@ const updateBookPatch = async (req, res) => {
     const updateBook = req.body; //datos actualizados del libro
 
     const book = await Book.findByPk(bookId); //busco el libro por id
-    if(!book){
-      res.status(404).json({message: "Book not found"});
+    if (!book) {
+      res.status(404).json({ message: "Book not found" });
 
     }
     book.title = updateBook.title;//actualizo el titulo
@@ -75,8 +75,8 @@ const updateBookPatch = async (req, res) => {
     await book.save();//guardo los cambios
 
     res.json(book);//devuelvo el libro actualizado como repuesta 
-  }catch (error){
-    res.status(500).json({message: error.message});
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -84,6 +84,7 @@ module.exports = {
   getBooks,
   createBook,
   updateBook,
-  deleteBook
+  deleteBook,
+  updateBookPatch
 
 };

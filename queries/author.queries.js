@@ -25,7 +25,7 @@ const updateAuthor = async (req, res) => {
         const authorId = req.params.id;
         const updateAuthor = req.body;
 
-        const author = await author.findByPk(authorId);
+        const author = await author.findByPk(authorId);//findByPk es un metodo que busca un registro por su id
         if (!author) {
             res.status(404).json({ message: "Author not found" });
         }
