@@ -29,30 +29,36 @@ const updateBook = async (req, res) => {
     const book = await Book.findByPk(bookId); //busco el libro por id
     if (!book) {
       res.status(404).json({ message: "Book not found" });
+      return;
 
     }
     book.title = updateBook.title;//actualizo el titulo
     book.publication_date = updateBook.publication_date;//actualizo la fecha de publicacion
     book.genre_id = updateBook.genre_id;//actualizo el id del genero
-    book.stok = updateBook.stok;//actualizo el stock
+    book.stock = updateBook.stock; //actualizo el stock
     await book.save();//guardo los cambios
 
     res.json(book);//devuelvo el libro actualizado como repuesta 
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+}
 
 const deleteBook = async (req, res) => {
   try {
-    const bookId = req.params.id;//obtengo el id del libro que quiero eliminar
+    const bookId = req.params.id; // obtengo el id del libro que quiero eliminar
 
-    const book = await book.findByPk(bookId);//busco el libro por id
+    const book = await Book.findByPk(bookId); // busco el libro por id
     if (!book) {
       res.status(404).json({ message: "Book not found" });
+      return;
     }
-    await book.destroy();//elimino el libro
-    res.json({ message: "Book deleted" });//devuelvo un mensaje como respuesta
+    await Book.destroy({
+      where: {
+        id: bookId
+      }
+    }); // elimino el libro
+    res.json({ message: "Book deleted" }); // devuelvo un mensaje como respuesta
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -66,6 +72,7 @@ const updateBookPatch = async (req, res) => {
     const book = await Book.findByPk(bookId); //busco el libro por id
     if (!book) {
       res.status(404).json({ message: "Book not found" });
+      return; 
 
     }
     book.title = updateBook.title;//actualizo el titulo

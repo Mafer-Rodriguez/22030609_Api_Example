@@ -35,7 +35,7 @@ app.put("/book/:id",( req , res )=>{
   updateBook(req, res);
 });
 
-app.delete("/book/id",(req,res) =>{
+app.delete("/book/:id",(req,res) =>{
   deleteBook(req,res);
 })
 

@@ -4,7 +4,7 @@ const Author = db.author;
 
 const getAuthors = async (req, res) => {
     try {
-        const authors = await authors.findAll();
+        const authors = await Author.findAll();
         res.json(authors);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -13,7 +13,7 @@ const getAuthors = async (req, res) => {
 
 const createAuthor = async (req, res) => {
     try {
-        const author = await author.create(req.body);
+        const author = await Author.create(req.body);
         res.json(author);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -25,9 +25,10 @@ const updateAuthor = async (req, res) => {
         const authorId = req.params.id;
         const updateAuthor = req.body;
 
-        const author = await author.findByPk(authorId);//findByPk es un metodo que busca un registro por su id
+        const author = await Author.findByPk(authorId);//findByPk es un metodo que busca un registro por su id
         if (!author) {
             res.status(404).json({ message: "Author not found" });
+            return ;
         }
         author.name = updateAuthor.name;
         author.lastname = updateAuthor.lastname;
@@ -45,9 +46,10 @@ const deleteAuthor = async (req, res) => {
     try {
         const authorId = req.params.id;//obtengo el id del author que quiero eliminar
 
-        const author = await author.findByPk(author);//busco el author por id
+        const author = await Author.findByPk(authorId);//busco el author por id
         if (!author) {
             res.status(404).json({ message: "Author not found" });
+            return; //si no existe el author devuelvo un mensaje de error
         }
         await author.destroy();//elimino el autor 
         res.json({ message: "Author deleted" });//devuelvo un mensaje como respuesta
@@ -61,9 +63,10 @@ const updateAuthorPatch = async (req, res) => {
         const authorId = req.params.id; //obtengo el id del author que quiero actualizar
         const updateAuthor = req.body; //datos actualizados del autor 
 
-        const author = await author.findByPk(authorId);
+        const author = await Author.findByPk(authorId);
         if (!author) {
             res.status(404).json({ message: "Book not found" });
+            return; 
 
         }
         author.name = updateAuthor.name;//actualizo el nombre

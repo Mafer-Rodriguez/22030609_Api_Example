@@ -34,9 +34,9 @@ module.exports = (sequelize, Sequelize) => {//hacer un modulo que exporte una fu
                 type: Sequelize.DATE,
                 defaultValue: Sequelize.NOW,
             },
-            deleted_at: {
+            /*deleted_at: {
                 type: Sequelize.DATE,
-            },
+            },*/
         },
         {
             timestamps: false,
